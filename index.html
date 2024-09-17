@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="shortcut icon" href="./media/Vector-Search-PNG-Image.png" type="image/x-icon">
+
+    <title>WORDFINDER</title>
+  </head>
+  <body
+    class="w-full h-[100vh] flex flex-col justify-center items-center bg-[#282b3c] font-dana"
+  >
+    <!-- کانتینر تایید اولیه -->
+    <div
+      id="first-con"
+      class="w-[97%] h-[95%] md:w-[85%] lg:w-[75%] xl:w-[70%] 2xl:w-[65%] flex flex-col justify-between items-center bg-[#999999f6] p-4 rounded-xl"
+    >
+      <!-- متن راهنمایی -->
+      <div
+        class="w-full h-[15%] flex justify-center items-center text-center bg-[#5050507e] rounded-lg text-white text-[16px] md:text-[23px] lg:text-[25px] xl:text-[30px] flex-nowrap font-dana"
+      >
+        برای جستجو در متن خود لطفا در کادر زیر متن خود را جای گذاری کنید
+      </div>
+
+      <!-- کادر برای جای گذاری -->
+
+      <div class="w-full h-[70%]">
+        <textarea
+          name=""
+          cols=""
+          rows="4"
+          id="data-input"
+          class="bg-[#e4e4e4eb] text-[20px] rounded-lg text-right p-3 outline-none w-full h-full no-scrollbar resize-none"
+        ></textarea>
+      </div>
+      <!-- کانتینر دکمه و جستجو -->
+
+      <div class="w-full h-[10%] flex justify-between items-center">
+        <select id="lang-select" class="w-[130px] h-[36px] rounded-sm">
+          <option value="#">فارسی</option>
+          <option value="engpage.html" class="font-mono">English</option>
+        </select>
+
+        <input
+          id="first-search-btn"
+          type="button"
+          value="جستجو"
+          class="w-[42%] text-white font-bold sm:w-[40%] md:w-[35%] lg:w-[27%] xl:w-[23%] h-[75%] sm:h-[65%] md:h-[62%] rounded-lg bg-[#505050] shadow-[4px_5px_10px_1px] shadow-[#1b1b1b] hover:shadow-[1px_1px_3px_1px] hover:shadow-[#1b1b1b] hover:bg-[#505050c8] cursor-pointer"
+        />
+      </div>
+    </div>
+    <!-- ***************************************************************************************************** -->
+    <!-- کانتینر  -->
+    <div
+      id="last-con"
+      class="w-[97%] h-[95%] md:w-[85%] lg:w-[75%] xl:w-[70%] 2xl:w-[65%] hidden flex-col justify-between items-center bg-[#999999f6] p-[5px] lg:p-4 rounded-xl"
+    >
+      <!--کانتینر سرچ و دکمه ها-->
+
+      <div class="w-full p-1 bg-[#5050507e] rounded-xl">
+        <!-- قسمت بالا -->
+        <div
+          class="w-full h-[50px] flex justify-between xl:justify-between items-center rounded-2xl"
+        >
+          <!-- قسمت اتومات و دستی -->
+          <div class="hidden xl:flex justify-between w-[32%] h-full">
+            <input
+              id="manual-btn"
+              type="button"
+              value="دستی"
+              class="text-white font-semibold w-[40%] h-[95%] sm:w-[45%] rounded-md cursor-pointer bg-[#197dff9f] hover:shadow-[1px_2px_2px_1px] shadow-[#1b1b1b] shadow-[2px_3px_8px_1px] hover:shadow-[#1b1b1b] hover:bg-[#197dff5e] disabled:bg-[#197dff70] disabled:shadow-none disabled:cursor-default disabled:text-[#ffffffa1]"
+            />
+            <input
+              id="auto-btn"
+              type="button"
+              value="اتومات"
+              class="text-white font-semibold w-[40%] h-[95%] sm:w-[45%] rounded-md cursor-pointer bg-[#197dff9f] hover:shadow-[1px_2px_2px_1px] shadow-[#1b1b1b] shadow-[2px_3px_8px_1px] hover:shadow-[#1b1b1b] hover:bg-[#197dff5e] disabled:bg-[#197dff70] disabled:shadow-none disabled:cursor-default disabled:text-[#ffffffa1]"
+            />
+          </div>
+
+          <!-- قسمت خروجی تعداد حروف -->
+          <div
+            class="hidden sm:flex w-[25%] xl:w-[15%] 2xl:w-[14%] h-full border-[3px] rounded-xl justify-center items-center border-[#e0dddd] bg-[#1395a340]"
+          >
+            <p
+              class="font-dana text-white font-semibold text-[25px]"
+              id="length-output"
+            ></p>
+          </div>
+
+          <!--قسمت سرچ و دکمه های سرچ-->
+          <div
+            class="w-full h-full sm:w-[70%] lg:w-[65%] xl:w-[52%] flex justify-between items-center rounded-xl p-1 bg-[#7c7c7ce0]"
+          >
+            <input
+              id="delete-btn"
+              type="button"
+              value="پاک کردن"
+              class="text-white font-semibold w-[20%] h-full rounded-md cursor-pointer bg-[#b92b2b] hover:shadow-[1px_2px_2px_1px] shadow-[#1b1b1b] shadow-[2px_3px_8px_1px] hover:shadow-[#1b1b1b] hover:bg-[#b92b2bbb]"
+            />
+            <input
+              id="search-btn"
+              type="button"
+              value="جستجو"
+              class="text-white font-semibold w-[20%] h-full rounded-md cursor-pointer bg-[#505050] hover:shadow-[1px_2px_2px_1px] shadow-[#1b1b1b] shadow-[2px_3px_8px_1px] hover:shadow-[#1b1b1b] hover:bg-[#505050c8] disabled:bg-[#5050508f] disabled:shadow-none disabled:cursor-default disabled:text-[#ffffffa1]"
+            />
+            <input
+              id="search-input"
+              type="text"
+              placeholder="...جستجو"
+              class="w-[55%] h-full rounded-md focus:outline-none border-[3px] focus:border-blue-500 border-slate-900 pr-3 font-dana text-[25px] text-right"
+            />
+          </div>
+        </div>
+
+        <!-- کانتینر انتخاب نوع سرچ و تعداد کلمه ها برای گوشی -->
+        <div class="w-full h-[70px] xl:hidden flex justify-center items-center">
+          <!-- قسمت خروجی تعداد حروف برای گوشی -->
+
+          <div class="w-[45%] h-[80%] sm:hidden">
+            <div
+              class="flex w-[98%] h-full border-[2px] rounded-xl justify-center items-center border-[#e0dddd] bg-[#1395a340]"
+            >
+              <p
+                class="font-dana text-white font-semibold text-[20px]"
+                id="length-output-mob"
+              ></p>
+            </div>
+          </div>
+
+          <!-- قسمت دکمه های اتومات و دستی برای گوشی -->
+          <div
+            class="w-[55%] h-[80%] flex justify-evenly sm:justify-between items-center sm:w-[99%]"
+          >
+            <input
+              id="manual-btn-mob"
+              type="button"
+              value="دستی"
+              class="text-white font-semibold w-[45%] h-full sm:w-[25%] rounded-md cursor-pointer bg-[#197dff9f] hover:shadow-[1px_2px_2px_1px] shadow-[#1b1b1b] shadow-[2px_3px_8px_1px] hover:shadow-[#1b1b1b] hover:bg-[#197dff5e] disabled:bg-[#197dff70] disabled:shadow-none disabled:cursor-default disabled:text-[#ffffffa1]"
+            />
+            <input
+              id="auto-btn-mob"
+              type="button"
+              value="اتومات"
+              class="text-white font-semibold w-[45%] h-full sm:w-[25%] rounded-md cursor-pointer bg-[#197dff9f] hover:shadow-[1px_2px_2px_1px] shadow-[#1b1b1b] shadow-[2px_3px_8px_1px] hover:shadow-[#1b1b1b] hover:bg-[#197dff5e] disabled:bg-[#197dff70] disabled:shadow-none disabled:cursor-default disabled:text-[#ffffffa1]"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- کانتینر متن -->
+      <div
+        class="w-full h-[70%] no-scrollbar xl:h-[76%] rounded-lg overflow-x-clip overflow-y-auto bg-[#e4e4e4eb] text-justify p-2"
+      >
+        <p id="data-output" class="text-right text-[20px]"></p>
+      </div>
+
+      <!-- کانتینر دکمه امتحان مجدد و زبان -->
+
+      <div
+        class="w-full h-[10%] pr-[5px] md:pr-0 flex justify-between items-center"
+      >
+        <select id="lang-selectt" class="w-[130px] h-[36px] rounded-sm">
+          <option value="#">فارسی</option>
+          <option value="engpage.html" class="font-mono">English</option>
+        </select>
+
+        <input
+          id="last-search-btn"
+          type="button"
+          value="امتحان مجدد"
+          class="w-[42%] text-white font-bold sm:w-[40%] md:w-[35%] lg:w-[27%] xl:w-[23%] h-[75%] sm:h-[65%] md:h-[62%] rounded-lg bg-[#505050] shadow-[4px_5px_10px_1px] shadow-[#1b1b1b] hover:shadow-[1px_1px_3px_1px] hover:shadow-[#1b1b1b] hover:bg-[#505050c8] cursor-pointer"
+        />
+      </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>
